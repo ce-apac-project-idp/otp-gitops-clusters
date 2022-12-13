@@ -15,7 +15,7 @@ metadata:
     {{- end}}
 spec:
   size: 1
-  runningCount: 1
+  runningCount: 0
   baseDomain: {{ .Values.provider.baseDomain }}
   installConfigSecretTemplateRef:
     name: {{ .Values.clusterpoolName }}-install-config 
