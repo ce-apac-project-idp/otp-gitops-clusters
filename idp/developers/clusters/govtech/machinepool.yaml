@@ -1,0 +1,20 @@
+---
+apiVersion: hive.openshift.io/v1
+kind: MachinePool
+metadata:
+  name: govtech-worker
+  namespace: govtech
+spec:
+  clusterDeploymentRef:
+    name: govtech
+  name: govtech-worker
+  platform:
+    aws:
+      rootVolume:
+        iops: 2000
+        size: 100
+        type: io1
+      type: m5.xlarge
+      zones:
+        - ap-southeast-1a # Parametrise zones later
+  replicas: 3
