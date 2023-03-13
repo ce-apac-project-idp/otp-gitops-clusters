@@ -1,0 +1,34 @@
+apiVersion: hive.openshift.io/v1
+kind: ClusterDeployment
+metadata:
+  name: govtech
+  namespace: govtech
+  labels:
+    cloud: aws
+    region: ap-southeast-1
+    vendor: OpenShift
+    cluster.open-cluster-management.io/clusterset: 'default'
+  annotations:
+    argocd.argoproj.io/sync-wave: "460"
+    helm.sh/hook-weight: "460"
+spec:
+  baseDomain: onetouchprovisioning.com
+  clusterName: govtech
+  controlPlaneConfig:
+    servingCertificates: {}
+  installAttemptsLimit: 1
+  installed: false
+  platform:
+    aws:
+      credentialsSecretRef:
+        name: govtech-aws-creds
+      region: ap-southeast-1
+  provisioning:
+    installConfigSecretRef:
+      name: govtech-install-config
+    sshPrivateKeySecretRef:
+      name: govtech-ssh-private-key
+    imageSetRef:
+      name: img4.9.56-x86-64-appsub
+  pullSecretRef:
+    name: govtech-pull-secret
