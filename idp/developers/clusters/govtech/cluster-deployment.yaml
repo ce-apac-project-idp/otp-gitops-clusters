@@ -17,7 +17,6 @@ spec:
   controlPlaneConfig:
     servingCertificates: {}
   installAttemptsLimit: 1
-  installed: false
   platform:
     aws:
       credentialsSecretRef:
