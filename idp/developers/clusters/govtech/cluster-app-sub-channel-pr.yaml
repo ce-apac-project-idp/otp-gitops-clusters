@@ -1,0 +1,67 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: bootstrap-idp-developers
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "480"
+    helm.sh/hook-weight: "480"
+spec:
+  componentKinds:
+    - group: apps.open-cluster-management.io
+      kind: Subscription
+  descriptor: {}
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - bootstrap-idp-developers
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  annotations:
+    apps.open-cluster-management.io/reconcile-rate: medium
+  name: bootstrap-idp-developers-channel
+  namespace: govtech
+  labels:
+    app: bootstrap-idp-developers
+spec:
+  type: Git
+  pathname: https://github.com/ce-apac-project-idp/otp-gitops
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Subscription
+metadata:
+  annotations:
+    apps.open-cluster-management.io/git-branch: main
+    apps.open-cluster-management.io/git-path: 0-bootstrap/spokeclusters/idp/developers/sample.yaml
+    apps.open-cluster-management.io/reconcile-option: merge
+    argocd.argoproj.io/sync-wave: "480"
+    helm.sh/hook-weight: "480"
+  labels:
+    app: bootstrap-idp-developers
+  name: bootstrap-idp-developers-subscription-1
+  namespace: openshift-gitops
+spec:
+  channel: govtech/bootstrap-idp-developers-channel
+  placement:
+    placementRef:
+      kind: PlacementRule
+      name: bootstrap-idp-developers-placement-1
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: bootstrap-idp-developers
+  name: bootstrap-idp-developers-placement-1
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "480"
+    helm.sh/hook-weight: "480"  
+spec:
+  clusterSelector:
+    matchLabels:
+      name: govtech
