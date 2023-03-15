@@ -1,0 +1,24 @@
+apiVersion: agent.open-cluster-management.io/v1
+kind: KlusterletAddonConfig
+metadata:
+  name: test-ryu
+  namespace: test-ryu
+  annotations:
+    argocd.argoproj.io/sync-wave: "460"
+    helm.sh/hook-weight: "460"
+spec:
+  clusterName: test-ryu
+  clusterNamespace: test-ryu
+  clusterLabels:
+    cloud: Amazon
+    vendor: OpenShift
+  applicationManager:
+    enabled: true
+  policyController:
+    enabled: true
+  searchCollector:
+    enabled: true
+  certPolicyController:
+    enabled: true
+  iamPolicyController:
+    enabled: true
