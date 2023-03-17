@@ -22,7 +22,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: Channel
 metadata:
   annotations:
-    apps.open-cluster-management.io/reconcile-rate: medium
+    apps.open-cluster-management.io/reconcile-rate: high
   name: bootstrap-idp-developers-channel
   namespace: govtech
   labels:
@@ -39,7 +39,7 @@ metadata:
   annotations:
     apps.open-cluster-management.io/git-branch: main
     apps.open-cluster-management.io/git-path: 0-bootstrap/spokeclusters/idp/developers/sample.yaml
-    apps.open-cluster-management.io/reconcile-option: replace
+    apps.open-cluster-management.io/reconcile-option: merge
     argocd.argoproj.io/sync-wave: "480"
     helm.sh/hook-weight: "480"
   labels:
