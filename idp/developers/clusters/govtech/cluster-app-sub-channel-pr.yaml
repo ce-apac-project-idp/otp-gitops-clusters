@@ -2,7 +2,7 @@ apiVersion: app.k8s.io/v1beta1
 kind: Application
 metadata:
   name: bootstrap-idp-developers
-  namespace: openshift-gitops
+  namespace: govtech
   annotations:
     argocd.argoproj.io/sync-wave: "480"
     helm.sh/hook-weight: "480"
@@ -45,7 +45,7 @@ metadata:
   labels:
     app: bootstrap-idp-developers
   name: bootstrap-idp-developers-subscription-1
-  namespace: openshift-gitops
+  namespace: govtech
 spec:
   channel: govtech/bootstrap-idp-developers-channel
   placement:
@@ -59,7 +59,7 @@ metadata:
   labels:
     app: bootstrap-idp-developers
   name: bootstrap-idp-developers-placement-1
-  namespace: openshift-gitops
+  namespace: govtech
   annotations:
     argocd.argoproj.io/sync-wave: "480"
     helm.sh/hook-weight: "480"  
