@@ -26,6 +26,7 @@ metadata:
   name: bootstrap-idp-developers-channel
   namespace: govtech
   labels:
+    backstage.io/kubernetes-id: test-app
     app: bootstrap-idp-developers
 spec:
   type: Git
@@ -43,6 +44,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "480"
     helm.sh/hook-weight: "480"
   labels:
+    backstage.io/kubernetes-id: test-app
     app: bootstrap-idp-developers
   name: bootstrap-idp-developers-subscription-1
   namespace: govtech
@@ -57,6 +59,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   labels:
+    backstage.io/kubernetes-id: test-app
     app: bootstrap-idp-developers
   name: bootstrap-idp-developers-placement-1
   namespace: govtech
