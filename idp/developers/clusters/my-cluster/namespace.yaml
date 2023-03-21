@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/display-name: my-cluster
+    cluster.open-cluster-management.io/managedCluster: my-cluster
+    kubernetes.io/metadata.name: my-cluster
+    argocd.argoproj.io/sync-wave: "450"
+    helm.sh/hook-weight: "450"
+  name: my-cluster
